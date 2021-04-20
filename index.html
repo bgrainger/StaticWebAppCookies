@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Static Web App Cookies</title>
+</head>
+<body>
+  <div>API output:</div>
+  <div id=output></div>
+  <script type="text/javascript">
+
+let count = 0;
+function callApi() {
+  let url = '/api/Test';
+  if (++count % 3 == 0) {
+    url += '?setcookie=' + count;
+  }
+  fetch(url)
+  .then(response => response.text())
+  .then(text => {
+    var p = document.createElement("p");
+    p.innerText = text;
+    document.getElementById("output").appendChild(p);
+  });
+}
+
+window.setInterval(callApi, 3000);
+  </script>
+</body>
+</html>
