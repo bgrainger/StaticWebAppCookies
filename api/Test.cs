@@ -23,6 +23,8 @@ namespace api
                 req.HttpContext.Response.Cookies.Append("test", setcookie[0]);
                 message += $" Setting cookie to {setcookie[0]}.";
             }
+
+            req.HttpContext.Response.Headers["Cache-Control"] = "no-store, max-age=0";
             return new OkObjectResult(message);
         }
     }
